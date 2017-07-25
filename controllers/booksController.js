@@ -29,15 +29,19 @@ let findBookById = (req, res) => {
 
     var col = db.collection('books');
 
-    col.find({ _id: ObjectID(req.params.id) }).toArray((err, docs) => {
-      if (!err) {
-        res.send(docs)
-      } else {
-        res.status(500).send(err)
-      }
+    //Kalo findOne kudu pake promise, karena dia gak butuh .toArray()
+    //Kalo mau gak pake promise ya sama aja kayak find() yang di atas,
+    //cuma bedanya dia ada isinya di dalam parameter,
+    //find({ _id: ObjectID(req.params.id)}) <- nih contoh!
+    col.findOne({ _id: ObjectID(req.params.id) })
+    .then(docs => {
+      res.send(docs)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
       db.close();
     })
-  })
 }
 
 
