@@ -1,14 +1,12 @@
 # mongodb-crud
 
-## Simple RESTFUL App
+## Simple RESTFUL CRUD App with MongoDB
 Demo app with basic REST API and using MongoDB as Database.
 
 #### List of user routes:
 
 | Route                          | HTTP          | Description  |
 | ------------------------------ |:-------------:| ------------:|
-| ```/api/signup```   | POST    | Sign up with new user info |
-| ```/api/signin```   | POST    | Sign in while get an access token based on credentials |
 | ```/api/books```   | GET         | Get all the books info(admin only) |
 | ```/api/books/:id``` | GET       | Get a book data info by its ID (admin and/or authenticated user)|
 | ```/api/books```   | POST        | Create a new books document (admin only) |
