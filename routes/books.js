@@ -7,4 +7,10 @@ router.get('/', controller.findAllBooks);
 
 router.get('/:id', controller.findBookById);
 
+router.post('/', controller.insertDocument);
+
+router.delete('/:id', controller.removeDocument);
+
+router.put('/:id', controller.updateDocument);
+
 module.exports = router;

@@ -40,12 +40,86 @@ let findBookById = (req, res) => {
     .catch(err => {
       res.status(500).send(err)
     })
+
       db.close();
     })
 }
 
 
+let insertDocument = (req, res) => {
+  MongoClient.connect(url, function(err, db) {
+    console.log("Connected correctly to server");
+
+    var col = db.collection('books')
+    // Insert a single document
+    col.insertOne({
+      isbn: req.body.isbn,
+      title: req.body.title,
+      author: req.body.author,
+      category: req.body.category,
+      stock: parseInt(req.body.stock)
+    })
+    .then(doc_inserted => {
+      res.send(doc_inserted);
+    })
+    .catch(err => {
+      res.status(500).send(err);
+    })
+
+      db.close();
+    });
+}
+
+let removeDocument = (req, res) => {
+  MongoClient.connect(url, (err, db) => {
+    console.log("Connected correctly to server");
+
+    var col = db.collection('books');
+
+    col.deleteOne({ _id: ObjectID(req.params.id) })
+    .then(() => {
+      res.send('Delete success')
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+
+      db.close();
+    })
+}
+
+let updateDocument = (req, res) => {
+  MongoClient.connect(url, (err, db) => {
+    console.log("Connected correctly to server");
+
+    var col = db.collection('books');
+
+    col.updateOne({
+       _id: ObjectID(req.params.id)
+     }, {
+       $set: {
+         isbn: req.body.isbn,
+         title: req.body.title,
+         author: req.body.author,
+         category: req.body.category,
+         stock: parseInt(req.body.stock)
+       }
+     })
+    .then((doc_updated) => {
+      res.send(doc_updated)
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
+
+      db.close();
+    })
+}
+
 module.exports = {
   findAllBooks,
-  findBookById
+  findBookById,
+  insertDocument,
+  removeDocument,
+  updateDocument
 }

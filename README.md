@@ -10,10 +10,10 @@ Demo app with basic REST API and using MongoDB as Database.
 | ```/api/signup```   | POST    | Sign up with new user info |
 | ```/api/signin```   | POST    | Sign in while get an access token based on credentials |
 | ```/api/books```   | GET         | Get all the books info(admin only) |
-| ```/api/books/:id``` | GET       | Get a single user info(admin and/or authenticated user)|
-| ```/api/books```   | POST        | Create a user (admin only) |
-| ```/api/books/:id``` | DELETE    | Delete a user (admin only) |
-| ```/api/books/:id```  | PUT      | Update a user with new info (admin and/or authenticated user) |
+| ```/api/books/:id``` | GET       | Get a book data info by its ID (admin and/or authenticated user)|
+| ```/api/books```   | POST        | Create a new books document (admin only) |
+| ```/api/books/:id``` | DELETE    | Delete a books data (admin only) |
+| ```/api/books/:id```  | PUT      | Update a books with new info (admin and/or authenticated user) |
 
 #### Usage:
 
